@@ -23,7 +23,7 @@ alias lm="cd /home/whosayin/Code/limango"
 alias fr="cd /home/whosayin/Code/limango/deployment_frontend"
 
 # - Git
-alias gpr="git pull --rebase;"
+alias gpr="git pull --rebase origin master; git fetch;"
 
 # - Apt
 alias ins="sudo apt-get install"
@@ -36,6 +36,11 @@ alias svi="sudo vi"
 alias nginxreload='sudo /usr/sbin/nginx -s reload'
 alias nginxtest='sudo /usr/sbin/nginx -t'
 
+# - tmux
+alias tns='tmux new -s '
+alias tls='tmux ls'
+alias ta='tmux attach -t '
+
 # disable bi-weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
 
@@ -47,3 +52,6 @@ export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/s
 
 # 256 colors
 export TERM=xterm-256color
+
+# grep colors
+export GREP_COLOR='00;38;5;226'
