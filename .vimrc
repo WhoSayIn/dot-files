@@ -55,7 +55,7 @@ set softtabstop=4
 set wildmenu
 set wildmode=list:longest,full
 
-set mouse=a
+" set mouse=a // do not use mouse anymore!!
 set ignorecase
 set smartcase
 set incsearch

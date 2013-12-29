@@ -12,39 +12,39 @@ alias c="clear"
 alias p="pwd"
 alias h="history"
 alias dl="cd ~/Downloads"
-alias reboot='sudo /sbin/reboot'
-alias poweroff='sudo /sbin/poweroff'
-alias halt='sudo /sbin/halt'
-alias shutdown='sudo /sbin/shutdown'
+alias dcm="cd ~/Documents"
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
 # - limango
 alias lm="cd /home/whosayin/Code/limango"
 alias fr="cd /home/whosayin/Code/limango/deployment_frontend"
 
-# - Git
-alias gpr="git pull --rebase origin master; git fetch;"
-
 # - Apt
 alias ins="sudo apt-get install"
 alias update='sudo apt-get update && sudo apt-get upgrade'
 
 # - Vim
-alias svi="sudo vi"
+alias svi="sudo vim"
 
 # - Nginx
 alias nginxreload='sudo /usr/sbin/nginx -s reload'
 alias nginxtest='sudo /usr/sbin/nginx -t'
+alias nginxse='cd /etc/nginx/sites-enabled'
 
 # - tmux
 alias tns='tmux new -s '
 alias tls='tmux ls'
 alias ta='tmux attach -t '
 
+# - edit config files
+alias zshrc='sudo vi ~/.zshrc'
+alias vimrc='sudo vi ~/.vimrc'
+alias edhosts='sudo vi /etc/hosts'
+
 # disable bi-weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
 
-plugins=(git symfony2 web-search autojump github)
+plugins=(git github symfony2 web-search autojump)
 
 source $ZSH/oh-my-zsh.sh
 
