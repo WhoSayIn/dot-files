@@ -1,6 +1,6 @@
 ZSH=$HOME/.oh-my-zsh
-
 ZSH_THEME="robbyrussell"
+export EDITOR="vim"
 
 # Aliases
 # - General
@@ -9,10 +9,11 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias c="clear"
-alias p="pwd"
 alias h="history"
 alias dl="cd ~/Downloads"
 alias dcm="cd ~/Documents"
+alias p="ps aux | grep"
+alias -g L="| less"
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
 # - limango
@@ -24,12 +25,16 @@ alias ins="sudo apt-get install"
 alias update='sudo apt-get update && sudo apt-get upgrade'
 
 # - Vim
+alias vi="vim"
 alias svi="sudo vim"
 
 # - Nginx
 alias nginxreload='sudo /usr/sbin/nginx -s reload'
 alias nginxtest='sudo /usr/sbin/nginx -t'
 alias nginxse='cd /etc/nginx/sites-enabled'
+
+# - php
+alias phprestart='sudo service php5-fpm restart'
 
 # - tmux
 alias tns='tmux new -s '
