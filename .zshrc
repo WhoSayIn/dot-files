@@ -16,10 +16,6 @@ alias p="ps aux | grep"
 alias -g L="| less"
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
-# - limango
-alias lm="cd /home/whosayin/Code/limango"
-alias fr="cd /home/whosayin/Code/limango/deployment_frontend"
-
 # - Apt
 alias ins="sudo apt-get install"
 alias update='sudo apt-get update && sudo apt-get upgrade'
@@ -29,12 +25,11 @@ alias vi="vim"
 alias svi="sudo vim"
 
 # - Nginx
-alias nginxreload='sudo /usr/sbin/nginx -s reload'
-alias nginxtest='sudo /usr/sbin/nginx -t'
-alias nginxse='cd /etc/nginx/sites-enabled'
+alias nre='sudo /usr/sbin/nginx -s reload'
+alias nse='cd /etc/nginx/sites-enabled'
 
 # - php
-alias phprestart='sudo service php5-fpm restart'
+alias pre='sudo service php5-fpm restart'
 
 # - tmux
 alias tns='tmux new -s '
