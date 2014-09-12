@@ -87,6 +87,11 @@ set showmatch
 set ruler
 set history=1000
 
+" Map jj into esc (v on visual mode)
+ino jj <esc>
+cno jj <c-c>
+vno v <esc>
+
 " split navigation
 nmap <silent> <c-k> :wincmd k<CR>
 nmap <silent> <c-j> :wincmd j<CR>
