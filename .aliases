@@ -9,12 +9,14 @@ alias dl='cd ~/Downloads'
 alias dcm='cd ~/Documents'
 alias dt='cd ~/Desktop'
 alias p='ps -ef | grep'
-alias -g L='| less'
+alias -g L=' | less'
 alias reprof='source ~/.zshrc'
 alias rmDS='find . -name *.DS_Store -type f -delete'
 
 # symfony
 alias sfrm='php app/console router:match'
+alias assetic='php app/console assetic:dump --env=prod --no-debug'
+alias sfrg='sfroute | grep'
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -60,9 +62,14 @@ alias brews='brew list -1'
 alias ins='brew install'
 
 # - vim
-alias vim='/usr/local/Cellar/vim/HEAD/bin/vim'
+alias vim='/usr/local/Cellar/vim/7.4.488/bin/vim'
 alias vi='vim'
 alias svi='sudo vim'
+
+# - vagrant
+alias vup='vagrant up'
+alias vssh='vagrant ssh'
+alias vrl='vagrant reload'
 
 # - nginx
 alias nre='sudo nginx -s reload'
@@ -75,6 +82,8 @@ alias runfpm='sudo php-fpm --fpm-config /usr/local/etc/php/5.5/php-fpm.conf'
 # - git
 alias gci='git commit -am'
 alias gupp='sleep 2 && gup && gp' # 2 seconds to think again what you are doing
+alias gdm='gd master'
+alias grm='git rebase master'
 
 # - start nginx and php-fpm
 alias np='sudo nginx && runfpm'
