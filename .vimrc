@@ -60,6 +60,9 @@ set smarttab
 set shiftwidth=4
 set softtabstop=4
 
+" Unset the last search pattern register by hitting return
+nnoremap <CR> :noh<CR><CR>
+
 " tab completion
 set wildmenu
 set wildmode=list:longest,full
