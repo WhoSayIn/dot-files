@@ -41,3 +41,6 @@
         contributors = shortlog --summary --numbered
 [core]
 	excludesfile = ~/.gitignore_global
+	autocrlf = input
+[push]
+	default = simple
