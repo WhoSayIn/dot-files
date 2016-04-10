@@ -10,6 +10,7 @@ alias dcm='cd ~/Documents'
 alias dt='cd ~/Desktop'
 alias p='ps -ef | grep'
 alias -g L=' | less'
+alias -g G=' | grep'
 alias reprof='source ~/.zshrc'
 alias rmDS='find . -name *.DS_Store -type f -delete'
 
@@ -62,7 +63,7 @@ alias brews='brew list -1'
 alias ins='brew install'
 
 # - vim
-alias vim='/usr/local/Cellar/vim/7.4.488/bin/vim'
+alias vim='/usr/local/Cellar/vim/7.4.963/bin/vim'
 alias vi='vim'
 alias svi='sudo vim'
 
@@ -84,6 +85,9 @@ alias gci='git commit -am'
 alias gupp='sleep 2 && gup && gp' # 2 seconds to think again what you are doing
 alias gdm='gd master'
 alias grm='git rebase master'
+alias gbag='gba G '
+alias grtm='gcm && gl && gco - && grm' # rebase current branch from master
+alias grbim='grbi master' # interactive rebase from master
 
 # - start nginx and php-fpm
 alias np='sudo nginx && runfpm'
@@ -100,3 +104,4 @@ alias vimrc='svi ~/.vimrc'
 alias aliases='svi ~/.aliases'
 alias edhosts='svi /private/etc/hosts'
 alias phpini='svi /usr/local/etc/php/5.5/php.ini'
+
