@@ -1,0 +1,3 @@
+bind generic 9 !@sh -c 'echo %(commit) | pbcopy'
+bind generic 8 !git revert %(commit)
+
