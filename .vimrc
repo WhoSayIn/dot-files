@@ -32,6 +32,9 @@ set backspace=2
 " line numbers
 set number
 
+" paste mode
+set pastetoggle=<F3>
+
 " remove any trailing whitespace
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
