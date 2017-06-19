@@ -13,6 +13,8 @@ alias -g L=' | less'
 alias -g G=' | grep'
 alias reprof='source ~/.zshrc'
 alias rmDS='find . -name *.DS_Store -type f -delete'
+alias cpwd="pwd | tr -d '\n' | pbcopy"
+alias json="python -m json.tool"
 
 # symfony
 alias sfrm='php app/console router:match'
@@ -79,6 +81,7 @@ alias nse='cd /usr/local/etc/nginx/conf.d'
 # - php
 alias phprestart='sudo service php5-fpm restart'
 alias runfpm='sudo php-fpm --fpm-config /usr/local/etc/php/5.5/php-fpm.conf'
+alias cm='php composer.phar'
 
 # - git
 alias gci='git commit -am'
@@ -88,6 +91,11 @@ alias grm='git rebase master'
 alias gbag='gba G '
 alias grtm='gcm && gl && gco - && grm' # rebase current branch from master
 alias grbim='grbi master' # interactive rebase from master
+alias gcob='gco -b'
+alias gmm='git merge master'
+alias ghist="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+alias ts='tig stash'
+alias gcb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy" # copy current branch name to clipboard
 
 # - start nginx and php-fpm
 alias np='sudo nginx && runfpm'
@@ -101,7 +109,12 @@ alias ta='tmux attach -t'
 # - edit config files
 alias zshrc='svi ~/.zshrc'
 alias vimrc='svi ~/.vimrc'
+alias tigrc='svi ~/.tigrc'
 alias aliases='svi ~/.aliases'
 alias edhosts='svi /private/etc/hosts'
 alias phpini='svi /usr/local/etc/php/5.5/php.ini'
 
+
+function mark {
+    export $1=`pwd`;
+    }
