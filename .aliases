@@ -13,6 +13,8 @@ alias -g L=' | less'
 alias -g G=' | grep'
 alias reprof='source ~/.zshrc'
 alias rmDS='find . -name *.DS_Store -type f -delete'
+alias cpwd="pwd | tr -d '\n' | pbcopy"
+alias json="python -m json.tool"
 
 # symfony
 alias sfrm='php app/console router:match'
@@ -79,6 +81,7 @@ alias nse='cd /usr/local/etc/nginx/conf.d'
 # - php
 alias phprestart='sudo service php5-fpm restart'
 alias runfpm='sudo php-fpm --fpm-config /usr/local/etc/php/5.5/php-fpm.conf'
+alias cm='php composer.phar'
 
 # - git
 alias gci='git commit -am'
@@ -88,6 +91,13 @@ alias grm='git rebase master'
 alias gbag='gba G '
 alias grtm='gcm && gl && gco - && grm' # rebase current branch from master
 alias grbim='grbi master' # interactive rebase from master
+alias gcop='gco production'
+alias gcob='gco -b'
+alias gmm='git merge master'
+alias ghist="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+alias gpp="gupp && gcop && gl && gmm && gp" # push to master and then switch to production branch and merge from master and also push to production
+alias ts='tig stash'
+alias gcb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy" # copy current branch name to clipboard
 
 # - start nginx and php-fpm
 alias np='sudo nginx && runfpm'
@@ -101,7 +111,63 @@ alias ta='tmux attach -t'
 # - edit config files
 alias zshrc='svi ~/.zshrc'
 alias vimrc='svi ~/.vimrc'
+alias tigrc='svi ~/.tigrc'
 alias aliases='svi ~/.aliases'
 alias edhosts='svi /private/etc/hosts'
 alias phpini='svi /usr/local/etc/php/5.5/php.ini'
 
+# modanisa
+API_FOLDER="~/code/modanisa55/mdns"
+DESKTOP_FRONTEND_FOLDER="~/code/modanisa53/modanisa"
+MOBILE_FRONTEND_FOLDER="~/code/modanisa55/mdns-mobil-web"
+
+alias api="cd $API_FOLDER"
+alias fr="cd $DESKTOP_FRONTEND_FOLDER"
+alias mbfr="cd $MOBILE_FRONTEND_FOLDER"
+
+alias gbahk="gbag hk-"          # all my branches
+alias gbahkl="gbag '  hk-'"     # all my local branches
+alias gbahkr="gbag '/hk-'"      # all my remote branches
+
+# compile po files
+cpo () {
+    cd ~/code/modanisa55/mdns/src/Modanisa/Bundle/ApiBundle/Resources/translations
+    rm -rf *.mo
+
+    for f in *.po
+    do
+        echo "$f isleniyor"
+        filename="${f%.*}"
+        msgfmt "${f}" -o "$filename.mo"
+    done
+
+    cd -
+}
+
+cpom () {
+    cd ~/code/modanisa55/mdns-mobil-web/src/Modanisa/Bundle/MobileBundle/Resources/translations
+    rm -rf *.mo
+
+    for f in *.po
+    do
+        echo "$f isleniyor"
+        filename="${f%.*}"
+        msgfmt "${f}" -o "$filename.mo"
+    done
+
+    cd -
+}
+
+# vagrant
+alias vcl='vagrant ssh -c "rm -rf mdns/app/cache/dev/*"'
+alias vclm='vagrant ssh -c "rm -rf mdns-mobil-web/app/cache/dev/*"'
+
+# scaleway
+alias sshsw='ssh whosayin@163.172.180.72'
+alias sshsr='ssh root@163.172.180.72'
+
+
+
+function mark {
+    export $1=`pwd`;
+    }
