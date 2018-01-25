@@ -1,3 +1,17 @@
+# copy commit hash
 bind generic 9 !@sh -c 'echo %(commit) | pbcopy'
-bind generic 8 !git revert %(commit)
 
+# open commit on github
+bind generic B @sh -c "open 'https://'$(git remote -v | grep -Eo 'github.com[:/][^.]+' | head -1 | tr : /)'/commit/%(commit)'"
+
+# amend
+bind generic + !git commit --amend
+
+# revert commit
+bind main ! !git revert %(commit)
+
+# stash changes
+bind status S !?git stash save --keep-index %(prompt)
+
+# apply stash
+bind stash A !?git stash apply %(stash)
