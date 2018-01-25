@@ -6,8 +6,8 @@ set encoding=utf-8
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+    Plugin 'VundleVim/Vundle.vim'
     Plugin 'shawncplus/phpcomplete.vim'
-    Plugin 'gmarik/vundle'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/nerdcommenter'
