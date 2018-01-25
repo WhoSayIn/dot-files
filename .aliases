@@ -18,6 +18,7 @@ alias json="python -m json.tool"
 
 # symfony
 alias sfrm='php app/console router:match'
+alias sfrmp='sfrm --method="POST"'
 alias assetic='php app/console assetic:dump --env=prod --no-debug'
 alias sfrg='sfroute | grep'
 
@@ -96,6 +97,15 @@ alias gmm='git merge master'
 alias ghist="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
 alias ts='tig stash'
 alias gcb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy" # copy current branch name to clipboard
+alias t='tig'
+
+# - create branches
+alias gbf='function _gbf(){ gcob "feature/MOD-$1"; };_gbf'
+alias gbb='function _gbb(){ gcob "bugfix/MOD-$1"; };_gbb'
+alias gbh='function _gbh(){ gcob "hotfix/MOD-$1"; };_gbh'
+#
+# - find MOD branch and switch
+alias gfb='function _gfb(){ export BRANCH=$(gbag $1 | head -n1 | xargs | tr -d "\n"); gco $BRANCH;};_gfb'
 
 # - start nginx and php-fpm
 alias np='sudo nginx && runfpm'
