@@ -8,19 +8,21 @@ alias h='history'
 alias dl='cd ~/Downloads'
 alias dcm='cd ~/Documents'
 alias dt='cd ~/Desktop'
-alias p='ps -ef | grep'
 alias -g L=' | less'
 alias -g G=' | grep'
+alias p='ps aux G'
 alias reprof='source ~/.zshrc'
 alias rmDS='find . -name *.DS_Store -type f -delete'
 alias cpwd="pwd | tr -d '\n' | pbcopy"
 alias json="python -m json.tool"
 
 # symfony
-alias sfrm='php app/console router:match'
+alias sfrm='sf router:match'
 alias sfrmp='sfrm --method="POST"'
-alias assetic='php app/console assetic:dump --env=prod --no-debug'
 alias sfrg='sfroute | grep'
+alias sfmd='sf doctrine:migrations:diff'
+alias sfmm='sf doctrine:migrations:migrate'
+alias sfme='sf doctrine:migrations:execute'
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -53,8 +55,8 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
-# Flush Directory Service cache
-alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+# Flush DNS Cache
+alias flush="sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache"
 
 # One of @janmoesen's ProTips
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
@@ -63,11 +65,12 @@ done
 
 # - brew
 alias brews='brew list -1'
-alias ins='brew install'
+alias bins='brew install'
 
 # - vim
-alias vim='/usr/local/Cellar/vim/7.4.963/bin/vim'
+alias vim='/usr/local/Cellar/vim/8.0.1750/bin/vim'
 alias vi='vim'
+alias v='vim'
 alias svi='sudo vim'
 
 # - vagrant
@@ -75,14 +78,21 @@ alias vup='vagrant up'
 alias vssh='vagrant ssh'
 alias vrl='vagrant reload'
 
+# - docker
+alias dup='cd ~/stages/1000 && docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d'
+alias dss='docker-sync start'
+alias fsw='fswatch -or apps/ | xargs -I ARG docker-sync sync'
+alias ddm='open -a Docker'
+alias ddd='dup && dss && fsw'
+
 # - nginx
-alias nre='sudo nginx -s reload'
-alias nse='cd /usr/local/etc/nginx/conf.d'
+alias nre='sudo nginx -s stop && sudo nginx'
 
 # - php
-alias phprestart='sudo service php5-fpm restart'
-alias runfpm='sudo php-fpm --fpm-config /usr/local/etc/php/5.5/php-fpm.conf'
-alias cm='php composer.phar'
+alias cm='composer'
+alias cmi='cm install'
+alias cmu='cm update'
+alias phpre='brew services restart php71'
 
 # - git
 alias gci='git commit -am'
@@ -93,11 +103,16 @@ alias gbag='gba G '
 alias grtm='gcm && gl && gco - && grm' # rebase current branch from master
 alias grbim='grbi master' # interactive rebase from master
 alias gcob='gco -b'
+alias gco-='gco -'
+alias ga.='ga .'
 alias gmm='git merge master'
+alias gsp='git stash pop'
 alias ghist="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
 alias ts='tig stash'
-alias gcb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy" # copy current branch name to clipboard
+alias gcbb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy" # copy current branch name to clipboard
 alias t='tig'
+alias gdc='function _gdc(){ git log --left-right --graph --cherry-pick --oneline "$1...$2"; };_gdc'
+alias gdcm='gdc master'
 
 # - create branches
 alias gbf='function _gbf(){ gcob "feature/MOD-$1"; };_gbf'
@@ -117,13 +132,12 @@ alias tls='tmux ls'
 alias ta='tmux attach -t'
 
 # - edit config files
-alias zshrc='svi ~/.zshrc'
+alias zshrc='svi ~/.zshrc; reprof'
 alias vimrc='svi ~/.vimrc'
 alias tigrc='svi ~/.tigrc'
-alias aliases='svi ~/.aliases'
+alias aliases='svi ~/.aliases; reprof'
 alias edhosts='svi /private/etc/hosts'
-alias phpini='svi /usr/local/etc/php/5.5/php.ini'
-
+alias phpini='svi /usr/local/etc/php/7.1/php.ini'
 
 function mark {
     export $1=`pwd`;
