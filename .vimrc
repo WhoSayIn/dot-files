@@ -17,6 +17,8 @@ call vundle#begin()
     Plugin 'beyondwords/vim-twig'
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'mattn/emmet-vim'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()
 filetype plugin indent on
@@ -54,6 +56,10 @@ syntax enable
 set background=dark
 colorscheme solarized
 let g:solarized_termcolors=256
+
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+let g:airline_powerline_fonts = 1
 
 set grepprg=grep\ -nH\ $*
 
