@@ -44,3 +44,5 @@
 	autocrlf = input
 [push]
 	default = simple
+[credential]
+	helper = osxkeychain
