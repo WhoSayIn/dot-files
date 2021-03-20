@@ -1,3 +1,6 @@
+# case insensitive
+set ignore_case = true
+
 # copy commit hash
 bind generic 9 !@sh -c 'echo %(commit) | pbcopy'
 
