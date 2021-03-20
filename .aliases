@@ -3,23 +3,25 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-alias c='clear'
+alias c='cd'
+alias cd-='cd -'
 alias h='history'
 alias dl='cd ~/Downloads'
 alias dcm='cd ~/Documents'
 alias dt='cd ~/Desktop'
 alias -g L=' | less'
-alias -g G=' | grep'
+alias -g G=' | grep -i'
 alias p='ps aux G'
 alias reprof='source ~/.zshrc'
-alias rmDS='find . -name *.DS_Store -type f -delete'
+alias rmDS='find . -name .DS_Store -type f -delete'
 alias cpwd="pwd | tr -d '\n' | pbcopy"
 alias json="python -m json.tool"
+alias aud="sudo killall coreaudiod" # restart core audio daemon when it stops working :/
 
 # symfony
 alias sfrm='sf router:match'
 alias sfrmp='sfrm --method="POST"'
-alias sfrg='sfroute | grep'
+alias sfrg='sfroute | grep -i'
 alias sfmd='sf doctrine:migrations:diff'
 alias sfmm='sf doctrine:migrations:migrate'
 alias sfme='sf doctrine:migrations:execute'
@@ -68,7 +70,6 @@ alias brews='brew list -1'
 alias bins='brew install'
 
 # - vim
-alias vim='/usr/local/Cellar/vim/8.0.1750/bin/vim'
 alias vi='vim'
 alias v='vim'
 alias svi='sudo vim'
@@ -78,30 +79,32 @@ alias vup='vagrant up'
 alias vssh='vagrant ssh'
 alias vrl='vagrant reload'
 
-# - docker
-alias dup='cd ~/stages/1000 && docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d'
-alias dss='docker-sync start'
-alias fsw='fswatch -or apps/ | xargs -I ARG docker-sync sync'
-alias ddm='open -a Docker'
-alias ddd='dup && dss && fsw'
-
 # - nginx
 alias nre='sudo nginx -s stop && sudo nginx'
+
+# - ssh
+alias ssa='ssh-add -K ~/.ssh/id_rsa'
 
 # - php
 alias cm='composer'
 alias cmi='cm install'
 alias cmu='cm update'
-alias phpre='brew services restart php71'
+
+# - k8s kubernetes kubectl
+alias kgn='k get namespaces G'
 
 # - git
 alias gci='git commit -am'
+alias gcif='gci "fixup"'
+alias gcit='gci "temp"'
 alias gupp='sleep 2 && gup && gp' # 2 seconds to think again what you are doing
 alias gdm='gd master'
 alias grm='git rebase master'
 alias gbag='gba G '
 alias grtm='gcm && gl && gco - && grm' # rebase current branch from master
 alias grbim='grbi master' # interactive rebase from master
+alias gpuu='gp -u origin $(git_current_branch)'
+alias gpfuu='gp -fu origin $(git_current_branch)'
 alias gcob='gco -b'
 alias gco-='gco -'
 alias ga.='ga .'
@@ -113,17 +116,15 @@ alias gcbb="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy" # copy curren
 alias t='tig'
 alias gdc='function _gdc(){ git log --left-right --graph --cherry-pick --oneline "$1...$2"; };_gdc'
 alias gdcm='gdc master'
+alias gcfu='git commit --fixup'
+alias grbif='grbi --autosquash'
 
 # - create branches
-alias gbf='function _gbf(){ gcob "feature/MOD-$1"; };_gbf'
-alias gbb='function _gbb(){ gcob "bugfix/MOD-$1"; };_gbb'
-alias gbh='function _gbh(){ gcob "hotfix/MOD-$1"; };_gbh'
+alias gbs='function _gbs(){ gcob "STORY_CM-$1"; };_gbs'
+alias gbt='function _gbt(){ gcob "TASK_CM-$1"; };_gbt'
 #
-# - find MOD branch and switch
+# - find branch and switch
 alias gfb='function _gfb(){ export BRANCH=$(gbag $1 | head -n1 | xargs | tr -d "\n"); gco $BRANCH;};_gfb'
-
-# - start nginx and php-fpm
-alias np='sudo nginx && runfpm'
 
 # - tmux
 alias tmux='TERM=screen-256color-bce tmux'
@@ -137,7 +138,6 @@ alias vimrc='svi ~/.vimrc'
 alias tigrc='svi ~/.tigrc'
 alias aliases='svi ~/.aliases; reprof'
 alias edhosts='svi /private/etc/hosts'
-alias phpini='svi /usr/local/etc/php/7.1/php.ini'
 
 function mark {
     export $1=`pwd`;
